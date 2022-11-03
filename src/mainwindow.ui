@@ -265,6 +265,7 @@
     </item>
    </layout>
   </widget>
+  <widget class="QStatusBar" name="StatusBar"/>
  </widget>
  <resources/>
  <connections/>

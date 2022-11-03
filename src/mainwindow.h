@@ -6,6 +6,8 @@
 
 #define OUTPUT_IMAGE_FORMAT (QImage::Format_ARGB32)
 
+#define OUTPUT_STATUS_BAR_NORMAL_MESSAGE_TIMEOUT_MS (1000)
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
