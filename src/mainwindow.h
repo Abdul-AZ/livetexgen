@@ -21,6 +21,7 @@ public:
     ~MainWindow();
 
 public slots:
+    void CapitalizeHexInput();
     void ResolutionChanged();
     void CalculateOutput();
 
