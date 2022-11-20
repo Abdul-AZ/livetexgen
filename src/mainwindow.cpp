@@ -1,10 +1,12 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QElapsedTimer>
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , saveOutputShortcut(QKeySequence(Qt::CTRL + Qt::Key_S), this, SLOT(SaveOutput()))
 {
     ui->setupUi(this);
     QRegExp regex ("^[0-9A-Fa-f]{6}$");
@@ -78,4 +80,29 @@ void MainWindow::CalculateOutput()
 
     int64_t calculationTime = timer.elapsed();
     ui->StatusBar->showMessage(QString("Finished Calculating Output. Time taken %1 ms").arg(calculationTime), OUTPUT_STATUS_BAR_NORMAL_MESSAGE_TIMEOUT_MS);
+}
+
+
+/*! \brief Opens a blocking file dialog to save the generated image
+ *
+ */
+void MainWindow::SaveOutput()
+{
+    QString selectedFilter;
+    QString path = QFileDialog::getSaveFileName(
+        this,
+        tr("Choose image export location"),
+        nullptr,
+        "PNG(*.png);;JPEG(*.jpg *.jpeg)",
+        &selectedFilter
+    );
+
+    //for when the user does not put in an extension
+    const QString defaultExtension = ".png";
+    if(selectedFilter.isEmpty())
+    {
+        path.append(defaultExtension);
+    }
+
+    outputImage->save(path);
 }

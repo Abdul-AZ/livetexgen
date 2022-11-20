@@ -1,8 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
 #include <memory>
+#include <QMainWindow>
+#include <QShortcut>
 
 #define OUTPUT_IMAGE_FORMAT (QImage::Format_ARGB32)
 
@@ -24,9 +25,11 @@ public slots:
     void CapitalizeHexInput();
     void ResolutionChanged();
     void CalculateOutput();
+    void SaveOutput();
 
 private:
     Ui::MainWindow *ui;
     std::unique_ptr<QImage> outputImage;
+    QShortcut saveOutputShortcut;
 };
 #endif // MAINWINDOW_H
