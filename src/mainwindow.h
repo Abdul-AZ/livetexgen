@@ -4,6 +4,8 @@
 #include <memory>
 #include <QMainWindow>
 #include <QShortcut>
+#include <QList>
+//#include "layers/layer.h"
 
 #define OUTPUT_IMAGE_FORMAT (QImage::Format_ARGB32)
 
@@ -26,10 +28,14 @@ public slots:
     void ResolutionChanged();
     void CalculateOutput();
     void SaveOutput();
+    void OpenAddLayerDialogWindow();
+    void AddLayer();
+    void RemoveLayer();
 
 private:
     Ui::MainWindow *ui;
     std::unique_ptr<QImage> outputImage;
     QShortcut saveOutputShortcut;
+    //std::vector<std::unique_ptr<Layer>> layers;
 };
 #endif // MAINWINDOW_H

@@ -2,6 +2,11 @@
 #include "./ui_mainwindow.h"
 #include <QElapsedTimer>
 #include <QFileDialog>
+#include <QStandardItem>
+
+#include "layers/addlayerdialog.h"
+#include "layers/solidcolorlayer.h"
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -24,6 +29,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     //call ResolutionChanged at the start so that the output image is initilized at startup
     ResolutionChanged();
+
+    //connect buttons to add and remove layers
+    connect(ui->AddLayerButton, SIGNAL(clicked()), this, SLOT(OpenAddLayerDialogWindow()));
+    connect(ui->DeleteLayerButton, SIGNAL(clicked()), this, SLOT(RemoveLayer()));
 }
 
 MainWindow::~MainWindow()
@@ -105,4 +114,24 @@ void MainWindow::SaveOutput()
     }
 
     outputImage->save(path);
+}
+
+void MainWindow::OpenAddLayerDialogWindow()
+{
+    AddLayerDialog* dialog = new AddLayerDialog(this);
+    connect(dialog, SIGNAL(accepted()), this, SLOT(AddLayer()));
+    dialog->show();
+}
+
+void MainWindow::AddLayer()
+{
+    Layer* layer = new SolidColorLayer();
+
+    ui->LayersView->AddLayer(layer);
+}
+
+void MainWindow::RemoveLayer()
+{
+    int index = ui->LayersView->currentIndex().row();
+    ui->LayersView->DeleteLayer(index);
 }

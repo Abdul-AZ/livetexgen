@@ -193,7 +193,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QFrame" name="SubControls">
+        <widget class="QFrame" name="SubControlsHolder">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -203,44 +203,130 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <layout class="QFormLayout" name="formLayout">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
           <property name="sizeConstraint">
            <enum>QLayout::SetDefaultConstraint</enum>
           </property>
-          <property name="horizontalSpacing">
-           <number>5</number>
-          </property>
-          <property name="verticalSpacing">
-           <number>3</number>
-          </property>
-          <property name="leftMargin">
-           <number>6</number>
-          </property>
           <property name="topMargin">
-           <number>6</number>
+           <number>9</number>
           </property>
           <property name="rightMargin">
-           <number>0</number>
+           <number>9</number>
           </property>
           <property name="bottomMargin">
-           <number>6</number>
+           <number>9</number>
           </property>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>Background Color </string>
+          <item>
+           <widget class="QGroupBox" name="EnvironmentOptionsGroupBox">
+            <property name="title">
+             <string>Environment Options</string>
             </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <layout class="QFormLayout" name="formLayout">
+             <property name="leftMargin">
+              <number>3</number>
+             </property>
+             <property name="topMargin">
+              <number>3</number>
+             </property>
+             <property name="rightMargin">
+              <number>3</number>
+             </property>
+             <property name="bottomMargin">
+              <number>3</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QLabel" name="BackgroundColorLabel">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Background Color </string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLineEdit" name="BackgroundColorHex">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="inputMask">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string notr="true">FFFFFF</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="BackgroundColorHex">
-            <property name="inputMask">
-             <string notr="true"/>
+          <item>
+           <widget class="QGroupBox" name="LayersGroupBox">
+            <property name="title">
+             <string>Layers</string>
             </property>
-            <property name="text">
-             <string notr="true">FFFFFF</string>
+            <property name="flat">
+             <bool>true</bool>
             </property>
+            <layout class="QVBoxLayout" name="verticalLayout_3">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_3">
+               <item>
+                <widget class="QPushButton" name="AddLayerButton">
+                 <property name="text">
+                  <string>Add Layer</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="DeleteLayerButton">
+                 <property name="text">
+                  <string>Delete Layer</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="LayerView" name="LayersView">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="alternatingRowColors">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Minimum</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </widget>
@@ -280,6 +366,13 @@
   </widget>
   <widget class="QStatusBar" name="StatusBar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>LayerView</class>
+   <extends>QListView</extends>
+   <header location="global">src/layers/layerview.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
