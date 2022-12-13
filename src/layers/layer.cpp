@@ -2,5 +2,4 @@
 
 Layer::Layer()
 {
-
 }

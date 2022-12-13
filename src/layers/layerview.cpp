@@ -5,6 +5,8 @@
 LayerView::LayerView(QObject* parent)
 {
     setModel(new QStringListModel());
+
+    connect(this,SIGNAL(clicked(const QModelIndex&)), this, SLOT(TrySelectingLayerByIndex(const QModelIndex&)));
 }
 
 void LayerView::AddLayer(Layer* layer)
@@ -24,4 +26,12 @@ void LayerView::DeleteLayer(int index)
     delete m_Layers[index];
     m_Layers.removeAt(index);
     model()->removeRow(index);
+}
+
+void LayerView::TrySelectingLayerByIndex(const QModelIndex& index)
+{
+    if((index.row() < 0) || (index.row() >= m_Layers.size()))
+        return;
+
+    emit LayerSelected(m_Layers[index.row()]);
 }

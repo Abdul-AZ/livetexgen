@@ -33,6 +33,9 @@ MainWindow::MainWindow(QWidget *parent)
     //connect buttons to add and remove layers
     connect(ui->AddLayerButton, SIGNAL(clicked()), this, SLOT(OpenAddLayerDialogWindow()));
     connect(ui->DeleteLayerButton, SIGNAL(clicked()), this, SLOT(RemoveLayer()));
+
+    //connect layer selection to the inspector
+    connect(ui->LayersView, SIGNAL(LayerSelected(Layer*)), this, SLOT(DisplayLayerInfo(Layer*)));
 }
 
 MainWindow::~MainWindow()
@@ -119,6 +122,7 @@ void MainWindow::SaveOutput()
 void MainWindow::OpenAddLayerDialogWindow()
 {
     AddLayerDialog* dialog = new AddLayerDialog(this);
+
     connect(dialog, SIGNAL(accepted()), this, SLOT(AddLayer()));
     dialog->show();
 }
@@ -134,4 +138,9 @@ void MainWindow::RemoveLayer()
 {
     int index = ui->LayersView->currentIndex().row();
     ui->LayersView->DeleteLayer(index);
+}
+
+void MainWindow::DisplayLayerInfo(Layer* layer)
+{
+    ui->LayerNameLineEdit->setText(layer->Name);
 }

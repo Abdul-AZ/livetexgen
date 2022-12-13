@@ -15,6 +15,11 @@ public:
     void AddLayer(Layer* layer);
     void DeleteLayer(int index);
 
+private slots:
+    void TrySelectingLayerByIndex(const QModelIndex& index);
+
+signals:
+    void LayerSelected(Layer* layer);
 
 private:
     QVector<Layer*> m_Layers;

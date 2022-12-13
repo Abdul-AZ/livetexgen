@@ -5,7 +5,8 @@
 #include <QMainWindow>
 #include <QShortcut>
 #include <QList>
-//#include "layers/layer.h"
+
+#include "layers/layer.h"
 
 #define OUTPUT_IMAGE_FORMAT (QImage::Format_ARGB32)
 
@@ -31,6 +32,9 @@ public slots:
     void OpenAddLayerDialogWindow();
     void AddLayer();
     void RemoveLayer();
+
+private slots:
+    void DisplayLayerInfo(Layer* layer); //will be changed to its own LayerInspector class
 
 private:
     Ui::MainWindow *ui;
