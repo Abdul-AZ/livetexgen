@@ -77,3 +77,4 @@ CMakeLists.txt.user
 
 # Default doxygen output files
 doc/doxygen
+doxygen
